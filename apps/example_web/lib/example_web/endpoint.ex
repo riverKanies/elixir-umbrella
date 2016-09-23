@@ -3,14 +3,6 @@ defmodule ExampleWeb.Endpoint do
 
   socket "/socket", ExampleWeb.UserSocket
 
-  # Serve at "/" the static files from "priv/static" directory.
-  #
-  # You should set gzip to true if you are running phoenix.digest
-  # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/", from: :example_web, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
-
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
@@ -33,7 +25,7 @@ defmodule ExampleWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_example_web_key",
-    signing_salt: "vtWJRxK5"
+    signing_salt: "L4etNoik"
 
   plug ExampleWeb.Router
 end
