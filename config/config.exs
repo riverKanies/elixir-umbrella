@@ -2,6 +2,11 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :rollbax,
+  access_token: System.get_env("ROLLBAR_SERVER_TOKEN"),
+  environment:  Mix.env,
+  enabled: :log
+
 # By default, the umbrella project as well as each child
 # application will require this configuration file, ensuring
 # they all use the same configuration. While one could
