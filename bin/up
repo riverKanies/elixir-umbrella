@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# stop on any failure
+set -e
+
+RESET='\e[0;0m'
+BLUE='\e[0;34m'
+
+log() {
+  printf "$BLUE$1$RESET\n"
+}
+
+if [[ ! -a .envrc ]]; then
+  log "Source env vars"
+  if [[ ! -a .env ]]; then
+    log "You need a .env file to run this app"
+    exit 1
+  fi
+  source .env
+fi
+
+bin/down
+
+if [[ -z "$GLOBAL_POSTGRES" ]]; then
+  echo "Start Postgres"
+  pg_ctl start -D db/postgres -l db/postgres.log || exit 1
+fi
+
+log "Start Phoenix"
+mix phoenix.server

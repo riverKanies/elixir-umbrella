@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# stop on any failure
+set -e
+
+RESET='\e[0;0m'
+BLUE='\e[0;34m'
+
+log() {
+  printf "$BLUE$1$RESET\n"
+}
+
+log 'Install dependencies'
+mix deps.get
+
+log 'Initialize DB'
+mix ecto.create && mix ecto.migrate
